@@ -22,6 +22,20 @@ int your_conv( cv::Mat src,
 
     // MAKE YOUR OWN CONVOLUTION PROCESS
 
+   
+for j=0 : j < (src_height - kernel_height): j+=stride
+        for i=0 : i < (src_width - kernel_width) : i+=stride
+                 
+               dst = scr.at<Vrc3b>(kernel_height+j,kernel_width+i)[1]
+               dst = src[i,j].*kernel;
+	end
+
+
+
+
+
+
+	
     // if success
     return 0
 
@@ -37,10 +51,10 @@ int main ( int argc, char** argv )
         return -1;
     }
 
-    cv::Mat src, kernel, dst;
-
+    cv::Mat src, kernel, dst; //매트릭스 구조체
+a
     // Load an image
-    src = cv::imread( argv[1] );
+    src = cv::imread( "1212.jpg" //경로에 있는 이미지읽기 );
     if( !src.data )  { return -1; }
 
     // Make filter

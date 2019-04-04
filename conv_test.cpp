@@ -13,11 +13,9 @@ int main ( int argc, char** argv )
     cv::Mat src, kernel, dst;
 
     // Load an image
-<<<<<<< HEAD
+
     src = cv::imread( "1212.jpg" );
-=======
-    src = cv::imread( argv[1] );
->>>>>>> 5aa5c6c0138074a8d320b743fb189f6fec278110
+
     if( !src.data )  { return -1; }
 
     // Make filter
