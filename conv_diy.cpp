@@ -22,13 +22,27 @@ int your_conv( cv::Mat src,
 
     // MAKE YOUR OWN CONVOLUTION PROCESS
 
-   
-for j=0 : j < (src_height - kernel_height): j+=stride
-        for i=0 : i < (src_width - kernel_width) : i+=stride
-                 
-               dst = scr.at<Vrc3b>(kernel_height+j,kernel_width+i)[1]
-               dst = src[i,j].*kernel;
-	end
+       
+//serching
+dst_height = (src_height+2 * padding - kernel_height)/stride+1 ;
+dst_width= (src_width+2 * padding - kernel_width)/stride+1;
+
+
+//int dst=dst[dst_height-1][dst_width-1];
+
+
+for (int j=0 ; j < src_height-kernel_height; j+=stride){
+        for (int i=0 ; i < src_width-kernel_width ; i+=stride){
+        
+//kernel cal
+	  for (int y=0 ; y< kernel_height ; y+=1){
+ 			for (int x=0 ; x< kernel_width ; x+=1){
+ 			    dst[j,i] = src[j+y,i+x] * kernel[y,x];
+				}
+			}
+		}
+	}		
+
 
 
 
@@ -52,15 +66,13 @@ int main ( int argc, char** argv )
     }
 
     cv::Mat src, kernel, dst; //매트릭스 구조체
-a
     // Load an image
-    src = cv::imread( "1212.jpg" //경로에 있는 이미지읽기 );
+    src = cv::imread( "1212.jpg"  );//경로에 있는 이미지읽기
     if( !src.data )  { return -1; }
 
     // Make filter
     kernel = (cv::Mat_<float>(3, 3) << -1, -1, -1, -1, 8, -1, -1, -1, -1);
-
-
+                                                                                
     // Run 2D filter
     //cv::filter2D(src, dst, -1 , kernel, cv::Point( -1, -1 ), 0, cv::BORDER_DEFAULT );
 
